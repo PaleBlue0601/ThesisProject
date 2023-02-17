@@ -1,10 +1,10 @@
 const mysql = require('mysql')
 
-const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root', // 本地
-  password: '1154077274',
-  database: 'eopc',
+const db = mysql.createPool({//配置数据库基本信息
+  host: 'localhost',// 本地
+  user: 'root', // 用户名
+  password: '1154077274',//密码
+  database: 'eopc',//数据库名
 })
 
 db.query('select 1', (err, results) => {

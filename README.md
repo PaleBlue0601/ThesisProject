@@ -6,19 +6,19 @@
 
 #### 软件架构
 前端：vue ant-desgin-vue
-后端：nodejs
+后端：nodejs express
 数据库：mysql
 
 
 #### 安装教程
 
-1.  cd 
-2.  xxxx
-3.  xxxx
+1.  进入frond-end目录输入命令行yarn install
+2.  进入server目录输入命令行yarn install
+3.  设置server/db/index.js中数据库配置信息
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  进入frond-end目录输入命令行yarn run serve
+2.  进入server目录输入命令行yarn run serve
+3.  打开浏览器进入http://localhost:3000/
 
