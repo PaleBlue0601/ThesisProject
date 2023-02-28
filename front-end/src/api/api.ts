@@ -240,3 +240,19 @@ export const chatGetRetainMsg = (data = {}) => {
     data
   })
 }
+
+// usermanagement
+export const getuserinfos = (data = {}) => {
+  return axios.request({
+    url: '/usermanagement/getuserinfos',
+    method: 'post',
+    data
+  })
+}
+export const statusedit = (data = {}) => {
+  return axios.request({
+    url: '/usermanagement/statusedit',
+    method: 'post',
+    data
+  })
+}

@@ -136,6 +136,9 @@ export default {
       if (this.userID === undefined) {
         this.$message.info('请先登录')
         return false
+      } else if(this.userInfo.status == 'ban') {
+        this.$message.warning('对方账号封禁中')
+        return false
       }
       this.showDialog = true
       this.noEventsUpdate(true)
@@ -220,6 +223,9 @@ export default {
     contactOther() {// 联系对方
       if (this.userID == undefined) {
         this.$message.info('请先登录')
+        return false
+      } else if(this.userInfo.status == 'ban') {
+        this.$message.warning('对方账号封禁中')
         return false
       }
       const { avatarPath, petName, userID } = this.userInfo

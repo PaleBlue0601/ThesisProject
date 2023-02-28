@@ -37,7 +37,7 @@ export default new Vuex.Store({
     },
     userInfoUpdate(state, data) {
       const { avatarPath } = data
-      if (avatarPath !== null) {
+      if (avatarPath != '') {
         data.avatarPath = config.baseImgUrl + avatarPath
       }
       state.userInfo = data

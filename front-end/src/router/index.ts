@@ -22,7 +22,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/peopleobject',
-    name: 'peopleObject',
+    name: 'peopleobject',
     component: () => import('@/views/PeopleObject.vue')
   },
   {
@@ -44,13 +44,23 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: '/objectexchange',
-    name: 'objectExchange',
+    name: 'objectexchange',
     component: () => import('@/views/ObjectExchange.vue')
   },
   {
     path: '/objectdetail/:id',
     name: 'objectDetail',
     component: () => import('@/views/ObjectDetail.vue')
+  },
+  {
+    path: '/usermanagement',
+    name: 'usermanagement',
+    component: () => import('@/views/management/UserManagement.vue')
+  },
+  {
+    path: '/usercomplaint',
+    name: 'usercomplaint',
+    component: () => import('@/views/management/UserComplaint.vue')
   },
 ]
 

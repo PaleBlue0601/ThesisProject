@@ -31,9 +31,12 @@ router.post('/login', async (req, res) => {
   const { userName, password } = req.body
   const rows = await db.find('user_name_password', { userName })
   if (rows.length > 0) {
-    const { password: rowPassword } = rows[0]
+    const { password: rowPassword, userID } = rows[0]
+    const userInforows = await db.find('user_info', { userID })
     if (rowPassword !== password) {
       req.body = { success: false, message: "密码错误" }
+    } else if(userInforows[0].status == 'ban'){
+      req.body = { success: false, message: "登录失败，账号已封禁" }
     } else {
       req.body = { success: true, message: "登录成功", data: rows[0] }
     }

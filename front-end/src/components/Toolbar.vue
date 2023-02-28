@@ -1,7 +1,7 @@
 <template>
   <a-layout-header class="container">
-    <div class="logo"><a href="/">{{ logoTitle }}</a></div>
-    <a-menu class="menu-box" mode="horizontal" v-model="current" @click="menuChange"
+    <div class="logo">{{ logoTitle }}</div>
+    <a-menu class="menu-box" mode="horizontal" :selectedKeys="current" @click="menuChange"
       :style="{ lineHeight: '64px', fontSize: '18px' }">
       <a-menu-item v-for="item in menuItemData" :key="item.key">
         {{ item.text }}
@@ -13,11 +13,11 @@
     <a-popover v-if="loginState" trigger="click" placement="bottom">
       <template slot="content">
         <div class="popover-content-box">
-          <a-button icon="user" @click="toUserPage">我的账号</a-button>
+          <a-button icon="user" @click="toUserPage" v-if="userInfo.status == 'user'">我的账号</a-button>
           <a-button icon="logout" @click="hanldeLogout">退出</a-button>
         </div>
       </template>
-      <a-avatar :size="45" icon="user" :src="userInfo.avatarPath" />
+      <a-avatar :size="45" icon="user" :src="userInfo.avatarPath" style="cursor: pointer;"/>
     </a-popover>
   </a-layout-header>
 </template>
@@ -37,22 +37,32 @@ export default {
   },
   data() {
     return {
-      menuItemData: [
+      menuUserData: [
         {
           text: '首页',
           key: 'home'
         },
         {
           text: '个人藏品',
-          key: 'peopleObject'
+          key: 'peopleobject'
         },
         {
           text: '藏品交换',
-          key: 'objectExchange'
+          key: 'objectexchange'
         },
         {
           text: '消息',
           key: 'chat'
+        },
+      ],
+      menuAdminData: [
+        {
+          text: '用户管理',
+          key: 'usermanagement'
+        },
+        {
+          text: '用户投诉',
+          key: 'usercomplaint'
         },
       ],
       current: ['home'],
@@ -61,7 +71,6 @@ export default {
   methods: {
     ...mapMutations(['loginStateUpdate', 'userIDUpdate', 'userInfoUpdate']),
     openLgoinBox() {
-      
       const data = {
         openlogin: true,
         noEvents: true
@@ -69,7 +78,8 @@ export default {
       this.$emit('showLoginBox', data)
     },
     menuChange({ item, key, keyPath }) {
-      if(this.userID == undefined && key != 'home') {
+      const { userID } = this.userInfo
+      if (userID == undefined && key != 'home') {
         this.$message.info('请先登录')
         this.current = ['home']
         return
@@ -107,6 +117,10 @@ export default {
         res[item.key] = item.key
       })
       return res
+    },
+    menuItemData() {
+      const { status } = this.userInfo
+      return status == 'user' || status == undefined ? this.menuUserData : this.menuAdminData
     }
   },
   watch: {

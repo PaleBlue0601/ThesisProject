@@ -43,7 +43,6 @@
               <a>删除</a>
             </a-popconfirm>
           </div>
-
         </span>
         <span slot="default" slot-scope="text, record">
           <div class="default-col">

@@ -67,10 +67,8 @@ router.post('/userinfo/achievement', async (req, res) => {
       data.views += views || 0
       data.likes += likes || 0
     });
-    req.body = {success: true, message: "成就查询成功", data}
-  } else {
-    req.body = {success: false, message: "成就查询失败", data}
   }
+  req.body = {success: true, message: "成就查询成功", data}
   res.send(req.body)
 })
 

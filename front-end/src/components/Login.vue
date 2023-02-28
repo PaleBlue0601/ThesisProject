@@ -144,7 +144,11 @@ export default {
               this.userInfoUpdate()
               this.handleClose()
               this.$message.info(message)
-              window.location.href = '/'
+              if(userID != 16) {
+                window.location.href = '/'
+              } else {
+                window.location.href = '/userManagement'
+              }
             } else {
               this.$message.error(message)
             }

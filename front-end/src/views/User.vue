@@ -9,8 +9,9 @@
               <div class="title">{{ userInfoShow.petName }}</div>
               <div class="favour">|</div>
             </div>
-            <div class="user-action" v-if="pageUserID == userID">
-              <a-button @click="toUserSettingsPage">编辑个人信息</a-button>
+            <div class="user-action">
+              <a-button @click="toUserSettingsPage" v-if="pageUserID == userID">编辑个人信息</a-button>
+              <span v-if="userInfoShow.status == 'ban'" style="color: red;font-weight: bold;">账号封禁中</span>
             </div>
           </a-card>
           <a-tabs type="card" class="tabs-box">
