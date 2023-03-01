@@ -289,36 +289,6 @@ export default {
   padding: 16px 20px;
 }
 
-.btn {
-  height: 36px;
-  min-width: 64px;
-  padding: 0 16px;
-  border: none;
-  font-size: 20px;
-  box-shadow: none;
-}
-
-.btn-hover:hover {
-  background: #1890ff;
-  color: #fff !important;
-}
-
-.card-box {
-  width: 440px;
-  background: #fff;
-  z-index: inherit;
-  box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
-  border-radius: 4px;
-  margin: 24px;
-  overflow-y: auto;
-  pointer-events: auto;
-  transform-origin: center center;
-}
-
-.back_btn-box {
-  padding: 8px 6px 0;
-}
-
 .obj_header-box h3 {
   color: #999;
   margin-bottom: 12px;
@@ -339,7 +309,7 @@ export default {
   padding: 5px 10px;
 }
 
-.list_item-box {
-  min-height: 400px;
+.list_item-box /deep/ .ant-list-item{
+  height: 365px;
 }
 </style>

@@ -61,7 +61,7 @@ export default {
           key: 'usermanagement'
         },
         {
-          text: '用户投诉',
+          text: '举报管理',
           key: 'usercomplaint'
         },
       ],

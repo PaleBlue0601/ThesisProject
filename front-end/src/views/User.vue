@@ -11,7 +11,9 @@
             </div>
             <div class="user-action">
               <a-button @click="toUserSettingsPage" v-if="pageUserID == userID">编辑个人信息</a-button>
-              <span v-if="userInfoShow.status == 'ban'" style="color: red;font-weight: bold;">账号封禁中</span>
+              <span v-if="userInfoShow.status == 'ban'"
+                style="color: red;font-weight: bold;margin-right: 10px;">账号封禁中</span>
+              <a-button @click="openComplainDialog" v-if="pageUserID != userID">举报！</a-button>
             </div>
           </a-card>
           <a-tabs type="card" class="tabs-box">
@@ -51,12 +53,34 @@
         </a-col>
       </a-row>
     </div>
+    <!-- 举报弹窗 -->
+    <div v-if="showDialog" role="document" class="dialog-box" style="z-index : 202">
+      <div class="card-box">
+        <div class="back_btn-box">
+          <a-button class="btn btn-hover" icon="arrow-left" @click="handleClose"></a-button>
+        </div>
+        <a-card class="obj-box" :bordered="false">
+          <header class="obj_header-box">
+            <h3>请填写举报内容</h3>
+          </header>
+          <a-textarea v-model="complainContent" :auto-size="{ minRows: 5, maxRows: 10 }" />
+          <div class="acting-box">
+            <a-button type="primary" @click="onComplain">
+              确定
+            </a-button>
+            <a-button @click="handleClose" style="margin-left: 10px;">
+              取消
+            </a-button>
+          </div>
+        </a-card>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { getUserInfo, getPeopleObjcetList, userInfoAchievement } from '@/api/api'
+import { mapGetters, mapMutations } from 'vuex'
+import { getUserInfo, getPeopleObjcetList, userInfoAchievement, userComplain } from '@/api/api'
 import config from '@/config/index'
 import { histogramOption, pieChartOption } from '@/config/echartsOptions'
 import objectItem from '@/components/ObjectItem.vue'
@@ -83,10 +107,13 @@ export default {
       objectListData: [],
       achievements: {},
       pieChartOption,
-      histogramOption
+      histogramOption,
+      showDialog: false,
+      complainContent: ''
     }
   },
   methods: {
+    ...mapMutations(['noEventsUpdate']),
     toUserSettingsPage() {
       this.$router.push({ path: '/user/settings/profile' })
     },
@@ -94,7 +121,7 @@ export default {
       getUserInfo({ userID: this.pageUserID }).then(res => {
         const { success, message, data } = res
         if (success) {
-          data.avatarPath = config.baseImgUrl + data.avatarPath
+          data.avatarPath = data.avatarPath != '' ? config.baseImgUrl + data.avatarPath : '';
           this.pageUserInfo = data
         } else {
           this.$message.error(message)
@@ -140,7 +167,34 @@ export default {
           this.$message.error(message)
         }
       })
-    }
+    },
+    openComplainDialog() {
+      this.showDialog = true
+      this.noEventsUpdate(true)
+    },
+    handleClose() {
+      this.showDialog = false
+      this.noEventsUpdate(false)
+      this.complainContent = ''
+    },
+    onComplain() {
+      if(this.complainContent == '') {
+        this.$message.warning('举报内容不能为空！')
+        return false
+      }
+      const data = {
+        complainant: this.userInfo.petName,
+        defendant: this.pageUserInfo.petName,
+        content: this.complainContent
+      }
+      userComplain(data).then(res => {
+        const { success, message } = res
+        if(success) {
+          this.handleClose()
+        }
+        this.$message.info(message)
+      })
+    },
   },
   computed: {
     ...mapGetters(['userInfo', 'userID']),
@@ -273,5 +327,13 @@ export default {
     font-weight: 700;
     font-size: 16px;
   }
+}
+
+.list_item-box /deep/ .ant-list-item {
+  height: 460px;
+}
+
+.acting-box {
+  margin-top: 20px;
 }
 </style>

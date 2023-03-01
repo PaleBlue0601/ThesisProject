@@ -10,7 +10,7 @@
       </template>
       <template slot="description">
         <div class="user-box" v-if="objectInfo.isHome" @click="toUserPage">
-          <a-avatar :size="30" :src="avatarSrc" />
+          <a-avatar icon="user" :size="30" :src="avatarSrc" />
           <span class="user-name">{{ objectInfo.petName }}</span>
         </div>
         <div class="status-box">
@@ -64,11 +64,11 @@ export default {
   computed: {
     avatarSrc() {
       const { avatarPath } = this.objectInfo
-      return avatarPath !== null ? config.baseImgUrl + avatarPath : ''
+      return avatarPath != '' ? config.baseImgUrl + avatarPath : ''
     },
     imgSrc() {
       const { objectPic } = this.objectInfo
-      return objectPic !== null ? config.baseImgUrl + objectPic : ''
+      return objectPic != '' ? config.baseImgUrl + objectPic : ''
     }
   }
 }

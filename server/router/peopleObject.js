@@ -3,21 +3,7 @@ const router = express.Router()
 const fs = require('fs')
 const path = require('path')
 const db = require('../db/index')
-
-// 获取去当前日期 YYYY-MM-DD
-function getNowDate(dateForm) {
-  const date = new Date();//当前时间
-  const year = date.getFullYear() //返回指定日期的年份
-  const month = date.getMonth() + 1;//月
-  const day = date.getDate();//日
-  const hour = date.getHours();//时
-  const minute = date.getMinutes();//分
-  const second = date.getSeconds();//秒
-
-  //当前时间 
-  const curTime = `${year}-${month}-${day} ${hour}:${minute}:${second}`;
-  return curTime;
-}
+const { getNowDate } = require('../tools/tools')
 
 // 添加藏品
 router.post('/addpeopleobject', async (req, res) => {
@@ -76,7 +62,7 @@ router.post('/deletepeopleobjcet', async (req, res) => {
     });
   }
   let sql2 = `DELETE FROM object_info WHERE objectID IN(${ids})`
-  await db.deletes(sql2)
+  await db.customQuery(sql2)
   const rows = await db.customQuery(sql1)
   if (rows.length > 0) {
     req.body = { success: false, message: "藏品删除失败" }

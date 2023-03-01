@@ -49,7 +49,7 @@
           <div class="list-box">
             <a-radio-group @change="onRadioChange">
               <a-list :grid="{ gutter: 16, column: 4 }" :data-source="listData">
-                <a-list-item slot="renderItem" slot-scope="item" v-if="item.status === 'unexchange'">
+                <a-list-item class="list-item-box" slot="renderItem" slot-scope="item" v-if="item.status === 'unexchange'">
                   <div class="check-box">
                     <a-radio :value="item.objectID"></a-radio>
                   </div>
@@ -356,32 +356,7 @@ hr {
 .card-box {
   max-width: 985px;
   max-height: 80vh;
-  background: #fff;
-  z-index: inherit;
-  box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
-  border-radius: 4px;
-  margin: 24px;
-  overflow-y: auto;
-  pointer-events: auto;
-  transform-origin: center center;
-}
-
-.back_btn-box {
-  padding: 8px 6px 0;
-
-  .btn {
-    height: 36px;
-    min-width: 64px;
-    padding: 0 16px;
-    border: none;
-    font-size: 20px;
-    box-shadow: none;
-  }
-
-  .btn-hover:hover {
-    background: #1890ff;
-    color: #fff !important;
-  }
+  width: 985px;
 }
 
 .obj_header-box h3 {
@@ -397,5 +372,9 @@ hr {
 
 .img-box {
   max-width: 925px;
+}
+
+.list-item-box /deep/ .ant-list-item{
+  height: 300px;
 }
 </style>

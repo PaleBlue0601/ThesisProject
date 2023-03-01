@@ -144,7 +144,7 @@ export default {
               this.userInfoUpdate()
               this.handleClose()
               this.$message.info(message)
-              if(userID != 16) {
+              if(this.loginForm.userName != 'admin') {
                 window.location.href = '/'
               } else {
                 window.location.href = '/userManagement'
@@ -242,29 +242,11 @@ export default {
   z-index: inherit;
   box-shadow: 0 11px 15px -7px rgb(0 0 0 / 20%), 0 24px 38px 3px rgb(0 0 0 / 14%), 0 9px 46px 8px rgb(0 0 0 / 12%);
   transform-origin: center center;
-  width: 440px;
 }
 
 .card-box {
   background: #fff;
-}
-
-.btn {
-  height: 36px;
-  min-width: 64px;
-  padding: 0 16px;
-  border: none;
-  font-size: 20px;
-  box-shadow: none;
-}
-
-.btn-hover:hover {
-  background: #1890ff;
-  color: #fff !important;
-}
-
-.back_btn-box {
-  padding: 8px 6px 0;
+  margin: 0;
 }
 
 .login_header-box {

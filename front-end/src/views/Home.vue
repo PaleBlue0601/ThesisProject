@@ -91,7 +91,7 @@ export default {
   padding: 10px 20px;
 }
 
-.list_item-box {
-  min-height: 500px;
+.list_item-box /deep/ .ant-list-item{
+  height: 500px;
 }
 </style>

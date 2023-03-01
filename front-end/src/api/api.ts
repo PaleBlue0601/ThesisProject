@@ -256,3 +256,28 @@ export const statusedit = (data = {}) => {
     data
   })
 }
+
+// userComplain
+export const userComplain = (data = {}) => {
+  return axios.request({
+    url: '/usercomplain/complain',
+    method: 'post',
+    data
+  })
+}
+
+export const getComplains = (data = {}) => {
+  return axios.request({
+    url: '/usercomplain/getcomplains',
+    method: 'post',
+    data
+  })
+}
+
+export const deleteComplain = (data = {}) => {
+  return axios.request({
+    url: '/usercomplain/delete',
+    method: 'post',
+    data
+  })
+}

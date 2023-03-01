@@ -11,7 +11,7 @@
  Target Server Version : 50734
  File Encoding         : 65001
 
- Date: 28/02/2023 22:07:47
+ Date: 01/03/2023 22:09:45
 */
 
 SET NAMES utf8mb4;
@@ -76,6 +76,19 @@ CREATE TABLE `ship_to_address`  (
   `isDefault` enum('yes','no') CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '是否默认',
   PRIMARY KEY (`ID`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for user_complains
+-- ----------------------------
+DROP TABLE IF EXISTS `user_complains`;
+CREATE TABLE `user_complains`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `complainant` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '投诉者',
+  `defendant` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '被告人',
+  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '投诉内容',
+  `date` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '投诉时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for user_info

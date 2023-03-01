@@ -26,9 +26,6 @@ import { getuserinfos, statusedit } from '@/api/api'
 import config from '@/config/index';
 export default {
   name: 'UserManagement',
-  created() {
-    this.getTableData('')
-  },
   data() {
     return {
       tableData: [],
@@ -68,6 +65,9 @@ export default {
       ],
       queryKey: ''
     }
+  },
+  created() {
+    this.getTableData('')
   },
   methods: {
     async onSearch(value) {

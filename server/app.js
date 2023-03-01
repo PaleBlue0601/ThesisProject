@@ -13,6 +13,7 @@ const objectDetail = require('./router/objectDetail')
 const objectExchange = require('./router/objectExchange')
 const chat = require('./router/chat')
 const userManagement = require('./router/userManagement')
+const userComplain = require('./router/userComplain')
 
 const app = express()
 expressWs(app)
@@ -32,6 +33,7 @@ app.use(objectDetail)
 app.use(objectExchange)
 app.use(chat)
 app.use(userManagement)
+app.use(userComplain)
 
 app.listen(3000, () => {
   console.log('Example app listening on port 3000!');
