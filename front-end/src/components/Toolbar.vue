@@ -17,7 +17,7 @@
           <a-button icon="logout" @click="hanldeLogout">退出</a-button>
         </div>
       </template>
-      <a-avatar :size="45" icon="user" :src="userInfo.avatarPath" style="cursor: pointer;"/>
+      <a-avatar :size="45" icon="user" :src="userInfo.avatarPath" style="cursor: pointer;" />
     </a-popover>
   </a-layout-header>
 </template>
@@ -78,10 +78,13 @@ export default {
       this.$emit('showLoginBox', data)
     },
     menuChange({ item, key, keyPath }) {
-      const { userID } = this.userInfo
+      const { userID, status } = this.userInfo
       if (userID == undefined && key != 'home') {
         this.$message.info('请先登录')
         this.current = ['home']
+        return
+      } else if (status == 'dan') {
+        this.hanldeLogout()
         return
       }
       this.current = keyPath
@@ -92,7 +95,11 @@ export default {
     },
     toUserPage() {
       this.current = ['']
-      const { userID } = this.userInfo
+      const { userID, status } = this.userInfo
+      if (status == 'dan') {
+        this.hanldeLogout()
+        return
+      }
       this.$router.push({ path: `/user/${userID}` })
     },
     hanldeLogout() {
