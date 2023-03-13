@@ -373,8 +373,4 @@ hr {
 .img-box {
   max-width: 925px;
 }
-
-.list-item-box /deep/ .ant-list-item{
-  height: 300px;
-}
 </style>

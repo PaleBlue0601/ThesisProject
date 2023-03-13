@@ -90,8 +90,4 @@ export default {
   margin-top: 20px;
   padding: 10px 20px;
 }
-
-.list_item-box /deep/ .ant-list-item{
-  height: 500px;
-}
 </style>

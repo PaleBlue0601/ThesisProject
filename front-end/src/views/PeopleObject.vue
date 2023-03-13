@@ -308,8 +308,4 @@ export default {
   z-index: 999;
   padding: 5px 10px;
 }
-
-.list_item-box /deep/ .ant-list-item{
-  height: 365px;
-}
 </style>

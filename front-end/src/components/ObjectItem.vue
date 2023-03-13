@@ -1,10 +1,10 @@
 <template>
   <a-card hoverable>
-    <img slot="cover" alt="藏品图片" :src="imgSrc" @click="toObjectDetail" />
+    <img class="img-box" slot="cover" alt="藏品图片" :src="imgSrc" @click="toObjectDetail" />
     <a-card-meta>
       <template slot="title">
         <div class="title-box">
-          <span>{{ objectInfo.objectName }}</span>
+          <span class="name">{{ objectInfo.objectName }}</span>
           <span class="views"><a-icon type="eye" />{{ objectInfo.views || 0 }}</span>
         </div>
       </template>
@@ -93,12 +93,22 @@ export default {
 .title-box {
   display: flex;
   justify-content: space-between;
+  .name {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .views {
   color: #ccc;
+
   .anticon {
     margin-right: 5px;
   }
+}
+
+.img-box {
+  height: 375px;
 }
 </style>

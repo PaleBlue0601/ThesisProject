@@ -329,10 +329,6 @@ export default {
   }
 }
 
-.list_item-box /deep/ .ant-list-item {
-  height: 460px;
-}
-
 .acting-box {
   margin-top: 20px;
 }
